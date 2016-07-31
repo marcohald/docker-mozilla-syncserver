@@ -1,0 +1,18 @@
+syncserver:
+  image: birgerk/mozilla-syncserver
+  entrypoint: dockerize -wait tcp://db:3306 -timeout 240s /entrypoint.sh
+  ports:
+    - 5000:5000
+  links:
+    - db
+  environment:
+    SECRET: ULTRA_SECRET_RANDOM_STRING_WITH_NUMB3RS
+    DB_URI: "pymysql://moz:moz@db/moz-sync"
+
+db:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: ultra_secret
+    MYSQL_DATABASE: moz-sync
+    MYSQL_USER: moz
+    MYSQL_PASSWORD: moz
