@@ -27,7 +27,7 @@ secret = {{ default .Env.SECRET "" }}
 
 # Set this to "false" to disable new-user signups on the server.
 # Only request by existing accounts will be honoured.
-# allow_new_users = false
+allow_new_users = {{ default .Env.ALLOW_NEW_USERS "false" }}
 
 # Set this to "true" to work around a mismatch between public_url and
 # the application URL as seen by python, which can happen in certain reverse-
