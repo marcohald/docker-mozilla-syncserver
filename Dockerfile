@@ -22,8 +22,9 @@ RUN curl -L -O https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE
     rm -rf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Get the latest version at https://github.com/mozilla-services/syncserver and run the build command
-RUN cd /usr/local/share && git clone https://github.com/mozilla-services/syncserver
-
+RUN cd /usr/local/share && \
+    git clone https://github.com/mozilla-services/syncserver && \
+    git checkout $SERVER_VERSION
 WORKDIR $SERVER_HOME
 RUN pip install PyMySQL && \
     make build
