@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV SERVER_HOME /usr/local/share/syncserver
 ENV CONFIG_HOME /usr/local/share/config
 ENV DOCKERIZE_VERSION v0.2.0
+ENV SERVER_VERSION master
 
 # Base setup
 # ADD resources/etc/apt/ /etc/apt/
@@ -21,10 +22,13 @@ RUN curl -L -O https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE
     rm -rf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Get the latest version at https://github.com/mozilla-services/syncserver and run the build command
-RUN cd /usr/local/share && git clone https://github.com/mozilla-services/syncserver
+RUN mkdir -p $SERVER_HOME && \
+    curl -L -O https://github.com/mozilla-services/syncserver/archive/$SERVER_VERSION.tar.gz && \
+    tar -C $SERVER_HOME -xzvf syncserver-$SERVER_VERSION.tar.gz && \
+    rm -rf syncserver-$SERVER_VERSION.tar.gz
 WORKDIR $SERVER_HOME
-RUN make build
-    #pip install pysqlite2 PyMySQL
+RUN pip install pysqlite2 PyMySQL && \
+    make build
 
 # Add the configuration file
 RUN mkdir $CONFIG_HOME
