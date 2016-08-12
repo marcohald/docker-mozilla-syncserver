@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV SERVER_HOME /usr/local/share/syncserver
 ENV CONFIG_HOME /usr/local/share/config
 ENV DOCKERIZE_VERSION v0.2.0
-ENV SERVER_VERSION master
+ENV SERVER_VERSION 1.5.2
 
 # Base setup
 # ADD resources/etc/apt/ /etc/apt/
