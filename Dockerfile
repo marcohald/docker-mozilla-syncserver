@@ -27,8 +27,8 @@ RUN cd /usr/local/share && \
 
 WORKDIR $SERVER_HOME
 RUN git checkout $SERVER_VERSION && \
-    pip install PyMySQL && \
-    make build
+    make build && \
+    pip install PyMySQL
 
 # Add the configuration file
 RUN mkdir $CONFIG_HOME
