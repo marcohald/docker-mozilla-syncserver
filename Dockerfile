@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM debian:jessie
 
 MAINTAINER Jonathan Dray <jonathan.dray@gmail.com>, BirgerK <birger.kamp@gmail.com>
 
