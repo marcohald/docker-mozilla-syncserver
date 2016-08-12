@@ -27,7 +27,7 @@ RUN mkdir -p $SERVER_HOME && \
     tar -C $SERVER_HOME -xzvf $SERVER_VERSION.tar.gz && \
     rm -rf $SERVER_VERSION.tar.gz
 WORKDIR $SERVER_HOME
-RUN pip install pysqlite PyMySQL && \
+RUN pip install PyMySQL && \
     make build
 
 # Add the configuration file
