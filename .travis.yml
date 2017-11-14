@@ -1,0 +1,6 @@
+services:
+- docker
+language: bash
+script:
+# build image
+- docker build -t docker-mozilla-syncserver .
